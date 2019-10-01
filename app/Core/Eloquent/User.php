@@ -5,15 +5,16 @@ namespace App\Core\Eloquent;
 use Illuminate\Database\Eloquent\{Model,SoftDeletes};
 use Str;
 
-class Category extends Model
+class User extends Model
 {
-   // use SoftDeletes;//trait
-
-    protected $table="categories";
+    //
+    protected $table="users";
     protected $conection="pgsql";
-    protected $fillable=['name','description'];
+    protected $fillable=['name','email','password'];
 
-    public  static function boot()
+
+  
+  /*  public  static function boot()
     {
         static::creating(function($model){
             $model->slug=Str::slug($model->name);
@@ -21,20 +22,25 @@ class Category extends Model
             $model->updated_user=1;
         });
         parent::boot();
-    }
+    }*/
 
     //metodo get
     /*getFirstNameAtttribute
     getVa*/
 
     //asesor
-    public function getNameAttribute($value){
+    /*public function getNameAttribute($value){
         return Str::upper($value);
-    }
+    }*/
 
     //mutator transforma y guarda
     public function setNameAttribute($value){
         $this->attributes['name']=Str::upper($value);
     }
+
+    public function setPasswordAttribute($value){
+        $this->attributes['password']=bcrypt($value);
+    }
+        
 
 }

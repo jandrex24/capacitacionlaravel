@@ -1,22 +1,22 @@
 @extends('layouts.app')
-@section('title','Pagina de pruebas')
+@section('title','Actualizaciòn')
 @section('content')
 
 <div class="container">
     <div class="card">
     <div class="card-header bg-primary text-white">
-    <h1>Ingreso de Categoria</h1>
+    <h1>Actualizaciòn de Usuario</h1>
     </div>
     <div class="card-body">
         <h5 class="card-title">Special title treatment</h5>
         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="{{ route('categories.index') }}" class="btn btn-primary">Retornar</a>
+        <a href="{{ route('registers.index') }}" class="btn btn-primary">Retornar</a>
 
-    {!! Form::open(['route'=>'categories.store','method'=>'POST']) !!}
+    {!! Form::open(['route'=>['registers.update',$user],'method'=>'PUT']) !!}
 
-        {!!  Field::text('name',null,['label'=>'Nombre','placeholder'=>'Ingrese el Nombre']) !!}
+        {!!  Field::text('name',$user->name,['label'=>'Nombre','placeholder'=>'Ingrese el Nombre']) !!}
 
-        {!!  Field::textarea('description',null,['label'=>'Descripcion','placeholder'=>'Ingrese la descripcion']) !!}
+        {!!  Field::text('email',$user->email,['label'=>'E-mail','placeholder'=>'Ingrese la descripcion']) !!}
 
         {!!  Form::submit('Guardar',['class'=>'btn btn-primary']) !!}
 
